@@ -1,0 +1,32 @@
+{
+    "repositories": [
+        {
+        	"type":"composer",
+	        "url" : "http://packages.purepixel.co.uk"
+        }
+    ],
+    "name": "kevbaldwyn/sentry-auth",
+    "description": "Provides an authentication driver for Sentry as well as additional role based access control",
+    "authors": [
+        {
+            "name": "Kevin Baldwyn",
+            "email": "kevin@purepixel.co.uk"
+        }
+    ],
+    "require": {
+        "php": ">=5.3.0",
+        "illuminate/support": "4.0.x",
+        "illuminate/auth":"4.0.x",
+        "kevbaldwyn/avid": "dev-master",
+        "cartalyst/sentry": "2.0.*"
+    },
+    "autoload": {
+        "classmap": [
+            "src/migrations"
+        ],
+        "psr-0": {
+            "KevBaldwyn\\SentryAuth": "src/"
+        }
+    },
+    "minimum-stability": "dev"
+}
