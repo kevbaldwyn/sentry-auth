@@ -25,6 +25,13 @@ class SentryAuthServiceProvider extends ServiceProvider {
 		
 		$app = $this->app;
 		
+		
+		// redefine the sentry hasher to match laravel
+		$this->app['sentry.hasher'] = $this->app->share(function($app) {
+			return new SentryHasherProvider($app['hash']);
+		});
+		
+		
 		// redefine the Auth instance within the app
 		$this->app['auth']->extend('sentry', function() use ($app) {
 			
@@ -39,6 +46,7 @@ class SentryAuthServiceProvider extends ServiceProvider {
 		        
 		    );
 		});
+		
 		
 	}
 
