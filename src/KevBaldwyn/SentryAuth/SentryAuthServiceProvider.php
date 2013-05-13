@@ -47,7 +47,10 @@ class SentryAuthServiceProvider extends ServiceProvider {
 	 */
 	public function register()
 	{
-		//
+		// specify the default User model as the sentry user model
+		// (the default model should extend the sentry model)
+		// this should be refactored into a config for this package
+		$this->app['config']->set('cartalyst/sentry::users.model', 'User');
 	}
 
 	/**
