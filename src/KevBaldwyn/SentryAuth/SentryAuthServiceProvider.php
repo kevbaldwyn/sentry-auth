@@ -22,15 +22,50 @@ class SentryAuthServiceProvider extends ServiceProvider {
 	public function boot()
 	{
 		$this->package('kevbaldwyn/sentry-auth');
+
+		$this->registerAuth();
 		
-		$app = $this->app;
+	}
+
+	/**
+	 * Register the service provider.
+	 *
+	 * @return void
+	 */
+	public function register()
+	{
+		$this->loadSentryConfig();
 		
+		$this->registerHasher();
+		
+	}
+
+	/**
+	 * Get the services provided by the provider.
+	 *
+	 * @return array
+	 */
+	public function provides()
+	{
+		return array();
+	}
+	
+	
+	private function registerHasher() {
+		
+		$app = $this->app;		
 		
 		// redefine the sentry hasher to match laravel
 		$this->app['sentry.hasher'] = $this->app->share(function($app) {
 			return new SentryHasherProvider($app['hash']);
 		});
 		
+	}
+	
+	
+	private function registerAuth() {
+		
+		$app = $this->app;	
 		
 		// redefine the Auth instance within the app
 		$this->app['auth']->extend('sentry', function() use ($app) {
@@ -47,28 +82,9 @@ class SentryAuthServiceProvider extends ServiceProvider {
 		    );
 		});
 		
-		
 	}
-
-	/**
-	 * Register the service provider.
-	 *
-	 * @return void
-	 */
-	public function register()
-	{
-		$this->loadSentryConfig();
-	}
-
-	/**
-	 * Get the services provided by the provider.
-	 *
-	 * @return array
-	 */
-	public function provides()
-	{
-		return array();
-	}
+	
+	
 	
 	
 	private function loadSentryConfig() {
