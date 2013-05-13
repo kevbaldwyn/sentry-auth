@@ -17,7 +17,7 @@ return array(
 		|
 		*/
 
-		'model' => 'User'
+		'model' => 'KevBaldwyn\SentryAuth\Models\User'
 		
 	)
 );
