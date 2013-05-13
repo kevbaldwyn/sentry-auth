@@ -4,7 +4,7 @@ use Illuminate\Auth\UserInterface;
 use Illuminate\Auth\Guard;
 use Illuminate\Auth\UserProviderInterface;
 use Cartalyst\Sentry\Sessions\IlluminateSession;
-use Sentry;
+use Cartalyst\Sentry\Sentry;
 use Debugger;
 
 
@@ -34,6 +34,11 @@ class SentryGaurd extends Guard {
 	
 	public function user() {
 		return Sentry::getUser();
+	}
+	
+	
+	public function getUser() {
+		return static::user();
 	}
 	
 	
