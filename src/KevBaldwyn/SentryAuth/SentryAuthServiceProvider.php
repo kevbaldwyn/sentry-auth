@@ -2,6 +2,8 @@
 
 use Cartalyst\Sentry\Sessions\IlluminateSession;
 use Illuminate\Support\ServiceProvider;
+use Config;
+use Debugger;
 
 class SentryAuthServiceProvider extends ServiceProvider {
 
@@ -47,10 +49,7 @@ class SentryAuthServiceProvider extends ServiceProvider {
 	 */
 	public function register()
 	{
-		// specify the default User model as the sentry user model
-		// (the default model should extend the sentry model)
-		// this should be refactored into a config for this package
-		$this->app['config']->set('cartalyst/sentry::users.model', 'User');
+		$this->loadSentryConfig();
 	}
 
 	/**
@@ -61,6 +60,27 @@ class SentryAuthServiceProvider extends ServiceProvider {
 	public function provides()
 	{
 		return array();
+	}
+	
+	
+	private function loadSentryConfig() {
+		
+		Config::package('kevbaldwyn/sentry-auth', __DIR__.'/../../config');
+		
+		$this->recurseLoadConfig(Config::get('sentry-auth::sentry'));
+	}
+	
+	
+	private function recurseLoadConfig($config, $key = '') {
+		foreach($config as $k => $v) {
+			$thiskey =  $key . '.' . $k;
+			if(is_array($v)) {
+				$this->recurseLoadConfig($v, $thiskey);	
+			}else{
+				$thiskey = trim($thiskey, '.');
+				$this->app['config']->set('cartalyst/sentry::'. $thiskey, $v);
+			}
+		}
 	}
 
 }
