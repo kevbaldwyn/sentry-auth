@@ -4,7 +4,7 @@ use Illuminate\Auth\UserInterface;
 use Illuminate\Auth\Guard;
 use Illuminate\Auth\UserProviderInterface;
 use Cartalyst\Sentry\Sessions\IlluminateSession;
-use Cartalyst\Sentry\Sentry;
+use Sentry;
 use Debugger;
 
 
