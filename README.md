@@ -1,5 +1,5 @@
 # Introduction
-Sentry Auth is designed to be a drop in replacement for the native Laravel Auth system. It provides the same native API as the Auth class but also adds Sentry's own API to it natively. It also binds the Sentry User and Model APIs to your Eloquent Model, along with mapping the Laravel Hash API to Sentry's. 
+Sentry Auth is designed to be a drop in replacement for the native Laravel Auth system. It provides the same native API as the Auth class but also adds Sentry's own API to it natively. It also binds the Sentry User and Group model APIs to your Eloquent Model, along with mapping the Laravel Hash API to Sentry's. 
 
 ## Installation
 Add the following to your composer.json file
