@@ -10,6 +10,7 @@ class User extends \Cartalyst\Sentry\Users\Eloquent\User implements UserInterfac
 	public function __construct(array $attributes = array()) {
 		
 		// define dependencies
+		// this is for when we are calling the model directly
 		// these are usually defined by the IoC however as we are effectively breaking this to provide a consistent API 
 		// so we need to redefine them in the constructor
 		// probably not the best approach...
