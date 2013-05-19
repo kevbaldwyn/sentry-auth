@@ -17,6 +17,28 @@ And the requirement
 
 Then `composer update`
 
+Add the providers to app/config/app.php
+	
+	'providers' => array(
+		
+		...
+		
+		'Cartalyst\Sentry\SentryServiceProvider', // Sentry must be defined first
+		'KevBaldwyn\SentryAuth\SentryAuthServiceProvider'
+		
+		...
+
+Add Sentry Facade to app/config/app.php
+	
+
+	
+	'aliases' => array(	
+		...
+		
+		'Sentry' => 'Cartalyst\Sentry\Facades\Laravel\Sentry'
+		...
+		
+
 ## Configuration
 The package users a couple of config options to bind the User and Group Models.
 
