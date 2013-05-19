@@ -30,7 +30,7 @@ sentry-auth/src/config/sentry.php
 
 You can then extend this class to create your own models ie in your app/models/ directory in User.php:
 
-	class User extends KevBaldwyn\SentryAuth\Models\User {
+	class User extends \KevBaldwyn\SentryAuth\Models\User {
 		
 		// your own model definition
 		
