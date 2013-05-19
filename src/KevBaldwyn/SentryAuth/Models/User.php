@@ -6,6 +6,22 @@ use Sentry;
 
 class User extends \Cartalyst\Sentry\Users\Eloquent\User implements UserInterface, RemindableInterface {
 	
+	
+	public function __construct(array $attributes = array()) {
+		
+		// define dependencies
+		// these are usually defined by the IoC however as we are effectively breaking this to provide a consistent API 
+		// so we need to redefine them in the constructor
+		// probably not the best approach...
+		static::$hasher = \App::make('sentry.hasher');
+		static::$loginAttribute = \Config::get('cartalyst/sentry::users.login_attribute');
+		
+		parent::__construct($attributes);
+		
+	}
+	
+	
+	//protected static $hasher;
 
 	/**
 	 * Get the unique identifier for the user.
