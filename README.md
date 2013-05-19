@@ -28,13 +28,22 @@ sentry-auth/src/config/sentry.php
 
 	)
 
-You can then extend this class to create your own models ie in your app/models/ directory in User.php:
-
+You can then extend this class to create your own models:
+	
+	// app/models/User.php:
 	class User extends \KevBaldwyn\SentryAuth\Models\User {
 		
 		// your own model definition
 		
 	}
+
+	// update the model config
+	// app/config/packages/kevbaldwyn/sentry-auth/sentry.php
+	'users' => array(
+
+		'model' => 'User'
+
+	)
 
 sentry-auth/src/config/sentry.php can be used to overwrite any sentry default config options by defining any sentry config options with the same keys as you'd find in cartalyst/sentry/src/config/config.php
 
@@ -66,9 +75,7 @@ You can use all native Auth class methods the same way plus additionally you can
     	    'password'   => 'test')
     );
     
-    // group model is not yet done 
-    //$group = Group::create();
-    $group = Sentry::getGroupProvider()->create(array(
+    //$group = Group::create(array(
         'name'        => 'Users',
         'permissions' => array(
             'admin' => 1,
