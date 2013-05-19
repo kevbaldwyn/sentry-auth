@@ -22,8 +22,6 @@ class User extends \Cartalyst\Sentry\Users\Eloquent\User implements UserInterfac
 	}
 	
 	
-	//protected static $hasher;
-
 	/**
 	 * Get the unique identifier for the user.
 	 *
