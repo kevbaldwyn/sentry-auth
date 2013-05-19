@@ -2,10 +2,14 @@
 
 use Illuminate\Auth\UserInterface;
 use Illuminate\Auth\Reminders\RemindableInterface;
+use Sentry;
 
 class User extends \Cartalyst\Sentry\Users\Eloquent\User implements UserInterface, RemindableInterface {
 	
-	use \KevBaldwyn\Avid\ModelScaffolding;
+	
+	public static function create(array $attributes) {
+		return Sentry::getUserProvider()->create($attributes);
+	}
 
 
 	/**
@@ -36,6 +40,25 @@ class User extends \Cartalyst\Sentry\Users\Eloquent\User implements UserInterfac
 	public function getReminderEmail()
 	{
 		return $this->email;
+	}
+	
+			
+	public function __call($method, $parameters) {
+		$sentryUserProvider = Sentry::getUserProvider();
+		if(method_exists($sentryUserProvider, $method)) {
+			return call_user_func_array(array($sentryUserProvider, $method), $parameters);
+		}
+		
+		return parent::__call($method, $parameters);
+	}
+
+
+	public static function __callStatic($method, $parameters) {
+		$sentryUserProvider = Sentry::getUserProvider();
+		if(method_exists($sentryUserProvider, $method)) {
+			return call_user_func_array(array($sentryUserProvider, $method), $parameters);
+		}
+		return parent::__callStatic($method, $parameters);
 	}
 	
 	
