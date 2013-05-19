@@ -18,7 +18,7 @@ And the requirement
 Then `composer update`
 
 ## Configuration
-The package users a couple of config options to bind the User and Group Models becuase it uses another of my packages "Avid" for extra model functionality. You can use Sentry Auth without this if you like by changing the Model Config:
+The package users a couple of config options to bind the User and Group Models.
 
 sentry-auth/src/config/sentry.php
 
@@ -28,7 +28,13 @@ sentry-auth/src/config/sentry.php
 
 	)
 
-This can be changed to any model that extends `\Cartalyst\Sentry\Users\Eloquent\User`
+You can then extend this class to create your own models ie in your app/models/ directory in User.php:
+
+	class User extends KevBaldwyn\SentryAuth\Models\User {
+		
+		// your own model definition
+		
+	}
 
 sentry-auth/src/config/sentry.php can be used to overwrite any sentry default config options by defining any sentry config options with the same keys as you'd find in cartalyst/sentry/src/config/config.php
 
