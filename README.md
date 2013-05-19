@@ -37,7 +37,8 @@ You can then extend this class to create your own models:
 		
 	}
 
-	// update the model config
+Then update the model config
+
 	// app/config/packages/kevbaldwyn/sentry-auth/sentry.php
 	'users' => array(
 
