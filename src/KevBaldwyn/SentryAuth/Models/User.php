@@ -6,11 +6,6 @@ use Sentry;
 
 class User extends \Cartalyst\Sentry\Users\Eloquent\User implements UserInterface, RemindableInterface {
 	
-	
-	public static function create(array $attributes) {
-		return Sentry::getUserProvider()->create($attributes);
-	}
-
 
 	/**
 	 * Get the unique identifier for the user.
