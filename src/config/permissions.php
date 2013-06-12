@@ -9,6 +9,7 @@ return array(
 
 		'users' => array(
 
+			'index',
 			'edit', 
 			'create', 
 			'delete'
@@ -17,6 +18,7 @@ return array(
 
 		'groups' => array(
 
+			'index',
 			'edit', 
 			'create', 
 			'delete',
