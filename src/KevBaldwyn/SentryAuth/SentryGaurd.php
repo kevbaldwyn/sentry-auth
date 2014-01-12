@@ -37,6 +37,11 @@ class SentryGaurd extends Guard {
 	}
 	
 	
+	public function getUser() {
+		return static::user();
+	}
+	
+	
 	public function login(UserInterface $user, $remember = false) {
 		Sentry::login($user, $remember);
 	}
