@@ -24,6 +24,7 @@ class SentryAuthServiceProvider extends ServiceProvider {
 		$this->package('kevbaldwyn/sentry-auth');
 
 		$this->registerAuth();
+		$this->registerHasher();
 		
 	}
 
@@ -36,7 +37,6 @@ class SentryAuthServiceProvider extends ServiceProvider {
 	{
 		$this->loadSentryConfig();
 		
-		$this->registerHasher();
 		
 	}
 
